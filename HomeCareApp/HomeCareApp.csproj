@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180606143336_InitialDB.cs" />
+    <Compile Remove="Migrations\20180606143336_InitialDB.Designer.cs" />
+    <Compile Remove="Migrations\20180606143955_InitialDBs.cs" />
+    <Compile Remove="Migrations\20180606143955_InitialDBs.Designer.cs" />
+    <Compile Remove="Migrations\20180606145656_InitialDBs.cs" />
+    <Compile Remove="Migrations\20180606145656_InitialDBs.Designer.cs" />
+    <Compile Remove="Migrations\20180606150620_InitialDBs.cs" />
+    <Compile Remove="Migrations\20180606150620_InitialDBs.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
