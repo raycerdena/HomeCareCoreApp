@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeCareApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180606151130_InitialDBs")]
-    partial class InitialDBs
+    [Migration("20180702065225_AddRoleDatabase")]
+    partial class AddRoleDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,9 @@ namespace HomeCareApp.Migrations
             modelBuilder.Entity("HomeCareApp.Data.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnName("RoleId");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("RoleId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -66,6 +68,8 @@ namespace HomeCareApp.Migrations
 
                     b.Property<string>("Firstname");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
@@ -83,8 +87,6 @@ namespace HomeCareApp.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<int>("RoleId");
 
                     b.Property<string>("SecurityStamp");
 
@@ -104,6 +106,19 @@ namespace HomeCareApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("HomeCareApp.Data.ApplicationUserRole", b =>
+                {
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("RoleId");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -163,19 +178,6 @@ namespace HomeCareApp.Migrations
                     b.ToTable("UserLogin");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
-                {
-                    b.Property<int>("UserId");
-
-                    b.Property<int>("RoleId");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRole");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.Property<int>("UserId");
@@ -191,11 +193,16 @@ namespace HomeCareApp.Migrations
                     b.ToTable("UserToken");
                 });
 
-            modelBuilder.Entity("HomeCareApp.Data.ApplicationRole", b =>
+            modelBuilder.Entity("HomeCareApp.Data.ApplicationUserRole", b =>
                 {
-                    b.HasOne("HomeCareApp.Data.ApplicationUser")
-                        .WithMany("Roles")
-                        .HasForeignKey("Id")
+                    b.HasOne("HomeCareApp.Data.ApplicationRole", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HomeCareApp.Data.ApplicationUser", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -217,19 +224,6 @@ namespace HomeCareApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("HomeCareApp.Data.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
-                {
-                    b.HasOne("HomeCareApp.Data.ApplicationRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("HomeCareApp.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")

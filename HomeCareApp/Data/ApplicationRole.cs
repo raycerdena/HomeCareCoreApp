@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace HomeCareApp.Data
 {
@@ -6,5 +8,6 @@ namespace HomeCareApp.Data
     {
         public string Description { get; set; }
 
+        public ICollection<ApplicationUserRole> UserRoles { get; set; }
     }
 }

@@ -1,0 +1,18 @@
+﻿@model HomeCareApp.Core.ViewModels.RoleFormView
+@{
+    ViewData["Title"] = "CreateRole";
+}
+
+<h2>Create Role</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="RoleName">Role Name</label>
+        <input asp-for="RoleName" class="form-control" placeholder="Role Name" />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input asp-for="Description" class="form-control" placeholder="Description" />
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form> 

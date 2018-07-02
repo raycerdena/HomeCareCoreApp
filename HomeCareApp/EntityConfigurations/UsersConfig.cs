@@ -12,12 +12,12 @@ namespace HomeCareApp.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.ToTable("User")
-            .HasMany(u => u.Roles).WithOne().HasForeignKey(u => u.Id).IsRequired();
-
-
+            builder.ToTable("User");
             builder.HasKey(u => u.Id);
             builder.Property(e => e.Id).HasColumnName("UserId");
+
+
+
         }
 
     }

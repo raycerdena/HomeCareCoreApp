@@ -13,8 +13,11 @@ namespace HomeCareApp.EntityConfigurations
         public void Configure(EntityTypeBuilder<ApplicationRole> builder)
         {
             builder.ToTable("Role")
+                   .HasKey(u => u.Id);
 
-                   .Property(r => r.Id).HasColumnName("RoleId");
+            builder.Property(r => r.Id).HasColumnName("RoleId");
+
+
 
 
         }

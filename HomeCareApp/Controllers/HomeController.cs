@@ -4,7 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HomeCareApp.Models;
+using HomeCareApp.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HomeCareApp.Controllers
 {
@@ -39,5 +40,12 @@ namespace HomeCareApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Authorize]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
     }
 }

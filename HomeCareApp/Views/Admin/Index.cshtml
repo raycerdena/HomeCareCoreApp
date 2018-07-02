@@ -1,0 +1,35 @@
+﻿@model IEnumerable<HomeCareApp.Core.ViewModels.UserListView>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of Users</h2>
+
+<table id="users" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>UserName</th>
+            <th>Role Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Is Active</th>
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.UserName</td>
+                <td>@user.Role</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@(user.IsActive ? "Yes" : "No")</td>
+            </tr>
+        }
+    </thead>
+    <tbody></tbody>
+</table>
+
+

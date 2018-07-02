@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,10 +14,25 @@
     <Compile Remove="Migrations\20180606145656_InitialDBs.Designer.cs" />
     <Compile Remove="Migrations\20180606150620_InitialDBs.cs" />
     <Compile Remove="Migrations\20180606150620_InitialDBs.Designer.cs" />
+    <Compile Remove="Migrations\20180613052322_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20180613052322_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20180702055119_InitialMigration.cs" />
+    <Compile Remove="Migrations\20180702055119_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20180702061022_InitialMigration.cs" />
+    <Compile Remove="Migrations\20180702061022_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20180702061057_InitialMigration.cs" />
+    <Compile Remove="Migrations\20180702061057_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20180702062905_InitialMigrations.cs" />
+    <Compile Remove="Migrations\20180702062905_InitialMigrations.Designer.cs" />
+    <Compile Remove="Migrations\20180702063119_InitialMigrations.cs" />
+    <Compile Remove="Migrations\20180702063119_InitialMigrations.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
 </Project>

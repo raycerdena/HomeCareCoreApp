@@ -8,14 +8,8 @@ namespace HomeCareApp.Data
     {
         public string Firstname { get; set; }
         public string LastName { get; set; }
-        public ICollection<ApplicationRole> Roles { get; set; }
-        public int RoleId { get; set; }
-
-        public ApplicationUser()
-        {
-            Roles = new Collection<ApplicationRole>();
-        }
-
+        public bool IsActive { get; set; }
+        public ICollection<ApplicationUserRole> UserRoles { get; set; }
 
     }
 }
