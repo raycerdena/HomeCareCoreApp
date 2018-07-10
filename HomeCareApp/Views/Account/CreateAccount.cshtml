@@ -1,7 +1,7 @@
-﻿@model HomeCareApp.Core.ViewModels.RegisterFormView
+﻿@model HomeCareApp.Core.ViewModels.CreateUserFormView
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Creste User";
 }
 
 
@@ -10,12 +10,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <header class="card-header">
-                    <h4 class="card-title mt-2">Sign up</h4>
+                <header class="card-header"><h4>Create User</h4>
                 </header>
                 <article class="card-body">
-                    <form method="post">
+                    <form method="post" asp-action="CreateAccount" asp-controller="Account">
                         <div class="form-row">
+
                             <div class="col form-group">
                                 <label>First name </label>
                                 <input asp-for="Firstname" class="form-control" placeholder="Firstname">
@@ -44,20 +44,21 @@
                                 <input asp-for="ConfirmedPassword" type="password" class="form-control" placeholder=" ">
                             </div> <!-- form-group end.// -->
                         </div> <!-- form-row end.// -->
+                            
                         <div class="form-group">
                             <label>Phone Number</label>
                             <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
                         </div>
                         <div class="form-group">
                             <label>Roles</label>
-                            <select asp-for="RoleId" class="form-control" asp-items="@(new SelectList(Model.Roles,"Id","Name"))"><option>-Select-</option></select>
-                            @*@Html.DropDownListFor(m => m.Roles, new SelectList(Model.Roles, "Id", "Name"), "-Select-", new { @class = "form-control" })*@
-                            @*@Html.ValidationMessageFor(m => m.Genre)*@
+                            <select asp-for="RoleId" class="form-control" asp-items="@(Model.ApplicationRoles)"><option>-Select-</option></select>
+                   
                         </div>
+                        <input type="hidden" asp-for="Id" />
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+                            <button type="submit" class="btn btn-primary btn-block"> Submit  </button>
                         </div> <!-- form-group// -->
-                        <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
+                        @*<small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>*@
                     </form>
                 </article> <!-- card-body end .// -->
                 <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>

@@ -11,5 +11,10 @@ namespace HomeCareApp.Data
         public bool IsActive { get; set; }
         public ICollection<ApplicationUserRole> UserRoles { get; set; }
 
+        public void Cancel()
+        {
+            IsActive = true;
+
+        }
     }
 }

@@ -12,5 +12,7 @@ namespace HomeCareApp.Core.Interface
     {
         IEnumerable<UserListView> ListofUser();
 
+        ApplicationUser GetUser(int userid);
+
     }
 }

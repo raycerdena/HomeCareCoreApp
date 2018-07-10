@@ -18,6 +18,10 @@ namespace HomeCareApp.DataRepository
             _context = context;
         }
 
+        public ApplicationUser GetUser(int userid)
+        {
+            return _context.Users.SingleOrDefault(u => u.Id == userid);
+        }
 
 
         public IEnumerable<UserListView> ListofUser()
@@ -26,50 +30,21 @@ namespace HomeCareApp.DataRepository
                       .ThenInclude(ur => ur.Role)
                       .Select(r => new UserListView
                       {
-                         FirstName= r.Firstname,
-                        LastName=  r.LastName,
-                        UserName=  r.UserName,
-                        PhoneNumber=  r.PhoneNumber,
-                        Email=  r.Email,
-                       IsActive=   r.IsActive,
-                        Role=  r.UserRoles.Select(ur=>ur.Role.Name).SingleOrDefault()
+                          UserId = r.Id,
+                          FirstName = r.Firstname,
+                          LastName = r.LastName,
+                          UserName = r.UserName,
+                          PhoneNumber = r.PhoneNumber,
+                          Email = r.Email,
+                          IsActive = r.IsActive,
+                          Role = r.UserRoles.Select(ur => ur.Role.Name).SingleOrDefault()
 
                       })
                     .ToList();
 
             return user;
 
-            //var userList = (from user in _context.Users
-            //                select new
-            //                {
-            //                    UserId = user.Id,
-            //                    Username = user.UserName,
-            //                    user.Firstname,
-            //                    user.LastName,
-            //                    user.PhoneNumber,
-            //                    user.Email,
-            //                    user.IsActive,
-            //                    Role = (from userRole in user.UserRoles //[AspNetUserRoles]
-            //                            join role in _context.Roles //[AspNetRoles]//
-            //                            on userRole.RoleId
-            //                            equals role.Id
-            //                            select role.Name).ToList()
-            //                }).ToList();
 
-            //var userlistmodel = userList.Select(p => new UserListView
-            //{
-
-            //    UserName = p.Username,
-            //    FirstName = p.Firstname,
-            //    LastName = p.LastName,
-            //    Email = p.Email,
-            //    PhoneNumber = p.PhoneNumber,
-            //    Role = string.Join(",", p.Role),
-            //    IsActive = p.IsActive
-            //}).ToList();
-
-           // return userlistmodel;
-            
         }
 
     }
